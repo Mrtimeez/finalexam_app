@@ -1,0 +1,83 @@
+-- Appilcation4 --
+--sttongs.xml--
+<resources>
+    <string name="app_name">My Application</string>
+    <string-array name="my_item">
+        <item>ใบที่ 1</item>
+        <item>ใบที่ 2</item>
+        <item>ใบที่ 3</item>
+        <item>ใบที่ 4</item>
+        <item>ใบที่ 5</item>
+        <item>ใบที่ 6</item>
+        <item>ใบที่ 7</item>
+        <item>ใบที่ 8</item>
+        <item>ใบที่ 9</item>
+        <item>ใบที่ 10</item>
+
+
+    </string-array>
+</resources>
+
+--activity main.xml--
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Submit"
+        android:textSize="25sp"/>
+    <TextView
+        android:id="@+id/textview1"
+        android:text="...."
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
+
+--Main activity.kt--
+package com.example.myapplication
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.TextView
+
+class MainActivity : AppCompatActivity() {
+    lateinit var textView: TextView
+    lateinit var button: Button
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        textView = findViewById(R.id.textview1)
+        button = findViewById(R.id.button1)
+        button.setOnClickListener {
+            var array: Array<String> = resources.getStringArray(R.array.my_item)
+            var answer : Int
+            answer = Class1.randomFX(10)
+            textView.text = array[answer]
+        }
+    }
+}
+
+--Class1.kt-
+package com.example.myapplication
+
+import kotlin.random.Random
+
+class Class1 {
+    companion object{
+        fun randomFX(max : Int) :Int{
+            return Random.nextInt(max)
+        }
+    }
+}
