@@ -1,0 +1,68 @@
+Application 4
+activity main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+   <RadioGroup
+       android:id="@+id/group1"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content">
+      <RadioButton
+          android:id="@+id/radioSushi"
+          android:text="SuShi"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"/>
+      <RadioButton
+          android:id="@+id/radioBento"
+          android:text="Bento"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"/>
+      <RadioButton
+          android:id="@+id/radioTeriyaki"
+          android:text="Teriyaki"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"/>
+   </RadioGroup>
+   <Button
+      android:id="@+id/button1"
+       android:text="Submit"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"/>
+
+</LinearLayout>
+
+-Main activity.kt-
+package com.example.myapplication
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.Toast
+
+class MainActivity : AppCompatActivity() {
+    lateinit var button: Button
+    lateinit var radioGroup: RadioGroup
+    lateinit var radioButton: RadioButton
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        radioGroup = findViewById(R.id.group1)
+        button = findViewById(R.id.button1)
+        button.setOnClickListener {
+            val selectedOption : Int
+            selectedOption = radioGroup.checkedRadioButtonId
+            radioButton = findViewById(selectedOption)
+            Toast.makeText(applicationContext, radioButton.text, Toast.LENGTH_LONG).show()
+        }
+    }
+}

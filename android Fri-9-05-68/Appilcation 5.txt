@@ -1,0 +1,89 @@
+Appilcation 5
+-activity main.xml-
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_margin="30dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <CheckBox
+        android:id="@+id/chkBento"
+        android:text="@string/chkBento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <CheckBox
+        android:id="@+id/chkTempura"
+        android:text="@string/chkTempura"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <CheckBox
+        android:id="@+id/chkTeriyaki"
+        android:text="@string/chkTeriyaki"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <CheckBox
+        android:id="@+id/chkSushi"
+        android:text="@string/chkSushi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <CheckBox
+        android:id="@+id/chkRamen"
+        android:text="@string/chkRamen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/button1"
+        android:text="Submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/textview1"
+        android:textSize="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+
+-Main activity.kt-
+package com.example.myapplication
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.TextView
+
+class MainActivity : AppCompatActivity() {
+    lateinit var button: Button
+    lateinit var chkBento : CheckBox
+    lateinit var chkTeriyaki : CheckBox
+    lateinit var chkTempura : CheckBox
+    lateinit var chkRamen : CheckBox
+    lateinit var chkSushi : CheckBox
+    lateinit var textView: TextView
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        chkTeriyaki = findViewById(R.id.chkTeriyaki)
+        chkBento = findViewById(R.id.chkBento)
+        chkTempura = findViewById(R.id.chkTempura)
+        chkRamen = findViewById(R.id.chkRamen)
+        chkSushi = findViewById(R.id.chkSushi)
+        button = findViewById(R.id.button1)
+        textView = findViewById(R.id.textview1)
+        button.setOnClickListener {
+            val answer = StringBuffer()
+            answer.append("\nBento check: ").append(chkBento.isChecked())
+            answer.append("\nTeriyaki check: ").append(chkTeriyaki.isChecked())
+            answer.append("\nTempura check: ").append(chkTempura.isChecked())
+            answer.append("\nRamen check: ").append(chkRamen.isChecked())
+            answer.append("\nSushi check: ").append(chkSushi.isChecked())
+
+            textView.setText(answer)
+        }
+    }
+}
