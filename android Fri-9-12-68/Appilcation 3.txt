@@ -1,0 +1,44 @@
+Appilcation 3
+**Activity_main**
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_margin="30dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <RatingBar
+        android:id="@+id/Rating1"
+        android:rating="3"
+        android:stepSize="1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
+
+**MainActivity**
+package com.example.myapplication
+
+import android.media.Rating
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.RatingBar
+import android.widget.Toast
+
+class MainActivity : AppCompatActivity(), RatingBar.OnRatingBarChangeListener {
+    lateinit var ratingBar: RatingBar
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        ratingBar = findViewById(R.id.Rating1)
+        ratingBar.onRatingBarChangeListener = this
+    }
+
+    override fun onRatingChanged(ratingBar: RatingBar?, rating: Float, fromUser: Boolean) {
+        Toast.makeText(applicationContext,"STAR = $rating",Toast.LENGTH_LONG).show()
+    }
+}

@@ -1,0 +1,58 @@
+Appilcation 4
+**string.xml**
+<resources>
+    <string name="app_name">My Application</string>
+    <string-array name="cities_array">
+        <item>BKK</item>
+        <item>Manila</item>
+        <item>Seoul</item>
+        <item>Busan</item>
+        <item>Honolulu</item>
+        <item>Vancouver</item>
+        <item>Hong kong</item>
+        <item>Edinburgh</item>
+    </string-array>
+</resources>
+
+**Activity_main**
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_margin="30dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
+
+**MainActivity**
+package com.example.myapplication
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+
+class MainActivity : AppCompatActivity() {
+    lateinit var spinner : Spinner
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        spinner = findViewById(R.id.spinner1)
+        ArrayAdapter.createFromResource(this,R.array.cities_array,
+            android.R.layout.simple_spinner_item).also {
+                adapter -> adapter.setDropDownViewResource(
+                    android.R.layout.simple_spinner_dropdown_item
+                )
+            spinner.adapter = adapter
+        }
+    }
+}

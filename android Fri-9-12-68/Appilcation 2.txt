@@ -1,0 +1,145 @@
+Appilcation 2
+**Activity_main**
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_margin="30dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/txtR"
+        android:text="Red00"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <SeekBar
+        android:id="@+id/seekR"
+        android:layout_weight="5"
+        android:max="255"
+        android:progress="0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/txtG"
+        android:text="Green00"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <SeekBar
+        android:id="@+id/seekG"
+        android:layout_weight="5"
+        android:max="255"
+        android:progress="0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/txtB"
+        android:text="Blue00"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <SeekBar
+        android:id="@+id/seekB"
+        android:layout_weight="5"
+        android:max="255"
+        android:progress="0"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/txtPreview"
+        android:text="PREVIEW"
+        android:textSize="45sp"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+
+**MainActivity**
+package com.example.myapplication
+
+import android.graphics.Color
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.SeekBar
+import android.widget.TextView
+
+class MainActivity : AppCompatActivity() {
+    lateinit var textViewR: TextView
+    lateinit var textViewG: TextView
+    lateinit var textViewB: TextView
+    lateinit var txtview: TextView
+    lateinit var seekBarR: SeekBar
+    lateinit var seekBarG: SeekBar
+    lateinit var seekBarB: SeekBar
+    var r : Int = 0
+    var g : Int = 0
+    var b : Int = 0
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        textViewR = findViewById(R.id.txtR)
+        textViewG = findViewById(R.id.txtG)
+        textViewB = findViewById(R.id.txtB)
+        txtview = findViewById(R.id.txtPreview)
+        seekBarR = findViewById(R.id.seekR)
+        seekBarG = findViewById(R.id.seekG)
+        seekBarB = findViewById(R.id.seekB)
+        //Red Color
+        seekBarR.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                r = progress
+                textViewR.text = "RED: $r"
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                txtview.setTextColor(Color.rgb(r,g,b))
+            }
+        })
+        //Green Color
+        seekBarG.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                g = progress
+                textViewR.text = "GREEN: $g"
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                txtview.setTextColor(Color.rgb(r,g,b))
+            }
+        })
+        //Blue
+        seekBarB.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener{
+            override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+                b = progress
+                textViewR.text = "BLUE: $b"
+            }
+
+            override fun onStartTrackingTouch(seekBar: SeekBar?) {
+
+            }
+
+            override fun onStopTrackingTouch(seekBar: SeekBar?) {
+                txtview.setTextColor(Color.rgb(r,g,b))
+            }
+        })
+    }
+}
