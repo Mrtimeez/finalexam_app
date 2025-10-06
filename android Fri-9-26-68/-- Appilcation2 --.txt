@@ -1,0 +1,56 @@
+-- Appilcation2 --
+--activity main.xml--
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/edittext1"
+        android:hint="input radius"
+        android:textSize="30sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/button1"
+        android:text="Submit"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
+
+--Main activity.kt--
+package com.example.myapplication
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+
+class MainActivity : AppCompatActivity() {
+    lateinit var editText: EditText
+    lateinit var button: Button
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        var area: Double = 0.0
+        var r : Double = 0.0
+        editText = findViewById(R.id.edittext1)
+        button = findViewById(R.id.button1)
+        button.setOnClickListener {
+            r = editText.text.toString().toDoubleOrNull() ?: 0.0
+            area = areaOfCircle(r)
+            Toast.makeText(applicationContext, "The area is $area", Toast.LENGTH_LONG).show()
+        }
+    }
+    fun areaOfCircle(radius : Double) : Double{
+        return 3.14159 * radius * radius
+    }
+}
